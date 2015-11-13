@@ -1,0 +1,237 @@
+Created by PLY version 3.6 (http://www.dabeaz.com/ply)
+
+Grammar
+
+Rule 0     S' -> regexp
+Rule 1     regexp -> chars regexp
+Rule 2     regexp -> group regexp
+Rule 3     regexp -> <empty>
+Rule 4     group -> LPAREN regexp RPAREN
+Rule 5     chars -> chars TIMES
+Rule 6     chars -> group TIMES
+Rule 7     chars -> CHAR OR CHAR
+Rule 8     chars -> group OR group
+Rule 9     chars -> CHAR
+
+Terminals, with rules where they appear
+
+CHAR                 : 7 7 9
+LPAREN               : 4
+OR                   : 7 8
+RPAREN               : 4
+TIMES                : 5 6
+error                : 
+
+Nonterminals, with rules where they appear
+
+chars                : 1 5
+group                : 2 6 8 8
+regexp               : 1 2 4 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . regexp
+    (1) regexp -> . chars regexp
+    (2) regexp -> . group regexp
+    (3) regexp -> .
+    (5) chars -> . chars TIMES
+    (6) chars -> . group TIMES
+    (7) chars -> . CHAR OR CHAR
+    (8) chars -> . group OR group
+    (9) chars -> . CHAR
+    (4) group -> . LPAREN regexp RPAREN
+
+    $end            reduce using rule 3 (regexp -> .)
+    CHAR            shift and go to state 5
+    LPAREN          shift and go to state 1
+
+    group                          shift and go to state 4
+    regexp                         shift and go to state 2
+    chars                          shift and go to state 3
+
+state 1
+
+    (4) group -> LPAREN . regexp RPAREN
+    (1) regexp -> . chars regexp
+    (2) regexp -> . group regexp
+    (3) regexp -> .
+    (5) chars -> . chars TIMES
+    (6) chars -> . group TIMES
+    (7) chars -> . CHAR OR CHAR
+    (8) chars -> . group OR group
+    (9) chars -> . CHAR
+    (4) group -> . LPAREN regexp RPAREN
+
+    RPAREN          reduce using rule 3 (regexp -> .)
+    CHAR            shift and go to state 5
+    LPAREN          shift and go to state 1
+
+    group                          shift and go to state 4
+    regexp                         shift and go to state 6
+    chars                          shift and go to state 3
+
+state 2
+
+    (0) S' -> regexp .
+
+
+
+state 3
+
+    (1) regexp -> chars . regexp
+    (5) chars -> chars . TIMES
+    (1) regexp -> . chars regexp
+    (2) regexp -> . group regexp
+    (3) regexp -> .
+    (5) chars -> . chars TIMES
+    (6) chars -> . group TIMES
+    (7) chars -> . CHAR OR CHAR
+    (8) chars -> . group OR group
+    (9) chars -> . CHAR
+    (4) group -> . LPAREN regexp RPAREN
+
+    TIMES           shift and go to state 8
+    $end            reduce using rule 3 (regexp -> .)
+    RPAREN          reduce using rule 3 (regexp -> .)
+    CHAR            shift and go to state 5
+    LPAREN          shift and go to state 1
+
+    group                          shift and go to state 4
+    regexp                         shift and go to state 7
+    chars                          shift and go to state 3
+
+state 4
+
+    (2) regexp -> group . regexp
+    (6) chars -> group . TIMES
+    (8) chars -> group . OR group
+    (1) regexp -> . chars regexp
+    (2) regexp -> . group regexp
+    (3) regexp -> .
+    (5) chars -> . chars TIMES
+    (6) chars -> . group TIMES
+    (7) chars -> . CHAR OR CHAR
+    (8) chars -> . group OR group
+    (9) chars -> . CHAR
+    (4) group -> . LPAREN regexp RPAREN
+
+    TIMES           shift and go to state 11
+    OR              shift and go to state 9
+    $end            reduce using rule 3 (regexp -> .)
+    RPAREN          reduce using rule 3 (regexp -> .)
+    CHAR            shift and go to state 5
+    LPAREN          shift and go to state 1
+
+    group                          shift and go to state 4
+    regexp                         shift and go to state 10
+    chars                          shift and go to state 3
+
+state 5
+
+    (7) chars -> CHAR . OR CHAR
+    (9) chars -> CHAR .
+
+    OR              shift and go to state 12
+    TIMES           reduce using rule 9 (chars -> CHAR .)
+    CHAR            reduce using rule 9 (chars -> CHAR .)
+    LPAREN          reduce using rule 9 (chars -> CHAR .)
+    $end            reduce using rule 9 (chars -> CHAR .)
+    RPAREN          reduce using rule 9 (chars -> CHAR .)
+
+
+state 6
+
+    (4) group -> LPAREN regexp . RPAREN
+
+    RPAREN          shift and go to state 13
+
+
+state 7
+
+    (1) regexp -> chars regexp .
+
+    $end            reduce using rule 1 (regexp -> chars regexp .)
+    RPAREN          reduce using rule 1 (regexp -> chars regexp .)
+
+
+state 8
+
+    (5) chars -> chars TIMES .
+
+    TIMES           reduce using rule 5 (chars -> chars TIMES .)
+    CHAR            reduce using rule 5 (chars -> chars TIMES .)
+    LPAREN          reduce using rule 5 (chars -> chars TIMES .)
+    $end            reduce using rule 5 (chars -> chars TIMES .)
+    RPAREN          reduce using rule 5 (chars -> chars TIMES .)
+
+
+state 9
+
+    (8) chars -> group OR . group
+    (4) group -> . LPAREN regexp RPAREN
+
+    LPAREN          shift and go to state 1
+
+    group                          shift and go to state 14
+
+state 10
+
+    (2) regexp -> group regexp .
+
+    $end            reduce using rule 2 (regexp -> group regexp .)
+    RPAREN          reduce using rule 2 (regexp -> group regexp .)
+
+
+state 11
+
+    (6) chars -> group TIMES .
+
+    TIMES           reduce using rule 6 (chars -> group TIMES .)
+    CHAR            reduce using rule 6 (chars -> group TIMES .)
+    LPAREN          reduce using rule 6 (chars -> group TIMES .)
+    $end            reduce using rule 6 (chars -> group TIMES .)
+    RPAREN          reduce using rule 6 (chars -> group TIMES .)
+
+
+state 12
+
+    (7) chars -> CHAR OR . CHAR
+
+    CHAR            shift and go to state 15
+
+
+state 13
+
+    (4) group -> LPAREN regexp RPAREN .
+
+    TIMES           reduce using rule 4 (group -> LPAREN regexp RPAREN .)
+    OR              reduce using rule 4 (group -> LPAREN regexp RPAREN .)
+    CHAR            reduce using rule 4 (group -> LPAREN regexp RPAREN .)
+    LPAREN          reduce using rule 4 (group -> LPAREN regexp RPAREN .)
+    $end            reduce using rule 4 (group -> LPAREN regexp RPAREN .)
+    RPAREN          reduce using rule 4 (group -> LPAREN regexp RPAREN .)
+
+
+state 14
+
+    (8) chars -> group OR group .
+
+    TIMES           reduce using rule 8 (chars -> group OR group .)
+    CHAR            reduce using rule 8 (chars -> group OR group .)
+    LPAREN          reduce using rule 8 (chars -> group OR group .)
+    $end            reduce using rule 8 (chars -> group OR group .)
+    RPAREN          reduce using rule 8 (chars -> group OR group .)
+
+
+state 15
+
+    (7) chars -> CHAR OR CHAR .
+
+    TIMES           reduce using rule 7 (chars -> CHAR OR CHAR .)
+    CHAR            reduce using rule 7 (chars -> CHAR OR CHAR .)
+    LPAREN          reduce using rule 7 (chars -> CHAR OR CHAR .)
+    $end            reduce using rule 7 (chars -> CHAR OR CHAR .)
+    RPAREN          reduce using rule 7 (chars -> CHAR OR CHAR .)
+
