@@ -168,10 +168,10 @@ def finalize():
         #print "Writing TEX Output: " + output_latex_filename + ".tex"
         outfile.close() 
         #print "Rendering PDF Graphics: " + output_latex_filename + ".pdf"
-        cmd = "pdflatex " + output_latex_filename + ".tex > /dev/null < /dev/null" 
+        cmd = "pdftex " + output_latex_filename + ".tex > /dev/null < /dev/null" 
         subprocess.call(cmd,shell=True) 
         #print "Rendering PNG Graphics: " + output_latex_filename + ".png"
-        cmd = "convert " + output_latex_filename + ".pdf " + \
+        cmd = "~/imagemagick/ImageMagick-6.8.8/bin/convert " + output_latex_filename + ".pdf " + \
                 output_latex_filename + ".png" 
         subprocess.call(cmd,shell=True) 
         
