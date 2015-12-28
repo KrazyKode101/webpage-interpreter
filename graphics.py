@@ -9,7 +9,7 @@ import os
 
 # If you want the output filenames to be different (e.g., based on
 # environment variables), just change them here. 
-output_latex_filename = "./student"   
+output_latex_filename = "./output"   
 
 # If you want to put the static images elsewhere, just change this. 
 image_directory = "images/"     # make "" for current directory
